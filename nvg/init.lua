@@ -32,7 +32,7 @@ require("lazy").setup({
 	},
 	-- Telescope
 	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.6',
+		"nvim-telescope/telescope.nvim", tag = '0.1.6',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function()
 			require('nvg.plugins.telescope').init() 
@@ -44,6 +44,12 @@ require("lazy").setup({
 		build = ":TSUpdate",
 		config = function()
 			require('nvg.plugins.treesitter').init()
+		end
+	},
+	{
+		"mbbill/undotree",
+		config = function()
+			require('nvg.plugins.undotree').init()
 		end
 	},
 })
