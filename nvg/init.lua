@@ -53,7 +53,7 @@ require("lazy").setup({
 			require('nvg.plugins.undotree').init()
 		end
 	},
-	-- Lsp zero and it's deps
+	-- Lsp zero and its deps
 	{"williamboman/mason.nvim"},
 	{"williamboman/mason-lspconfig.nvim"},
 	{
