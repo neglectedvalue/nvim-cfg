@@ -46,10 +46,25 @@ require("lazy").setup({
 			require('nvg.plugins.treesitter').init()
 		end
 	},
+	-- Undotree
 	{
 		"mbbill/undotree",
 		config = function()
 			require('nvg.plugins.undotree').init()
 		end
 	},
+	-- Lsp zero and it's deps
+	{"williamboman/mason.nvim"},
+	{"williamboman/mason-lspconfig.nvim"},
+	{
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v3.x',
+		config = function()
+			require('nvg.plugins.lsp').init()
+		end
+	},
+	{'neovim/nvim-lspconfig'},
+	{'hrsh7th/cmp-nvim-lsp'},
+	{'hrsh7th/nvim-cmp'},
+	{'L3MON4D3/LuaSnip'},
 })
