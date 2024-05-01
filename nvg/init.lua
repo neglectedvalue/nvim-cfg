@@ -29,6 +29,13 @@ require("lazy").setup({
 			-- load the colorscheme here
 			vim.cmd([[colorscheme tokyonight]])
 		end,
+		opts = {
+			transparent = true,
+			styles = {
+				sidebars = "transparent",
+				floats = "transparent",
+			},
+		},
 	},
 	-- Telescope
 	{
