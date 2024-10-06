@@ -61,16 +61,18 @@ require("lazy").setup({
 		end
 	},
 	-- Lsp zero and its deps
-	{"williamboman/mason.nvim"},
-	{"williamboman/mason-lspconfig.nvim"},
 	{
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v3.x',
-		config = function()
-			require('nvg.plugins.lsp').init()
+		'neovim/nvim-lspconfig',
+		 config = function()
+			local lspconfig = require("lspconfig")
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			lspconfig.elixirls.setup({
+				-- you need to specify the executable command mannualy for elixir-ls
+		        cmd = { "/home/funkycatz/elixir_ls/language_server.sh" },
+				capabilities = capabilities,
+			})
 		end
 	},
-	{'neovim/nvim-lspconfig'},
 	{'hrsh7th/cmp-nvim-lsp'},
 	{
 		'hrsh7th/nvim-cmp',

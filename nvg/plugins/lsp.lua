@@ -1,3 +1,5 @@
+# outdated
+
 local function init()
 	
 	local lsp_zero = require('lsp-zero')
