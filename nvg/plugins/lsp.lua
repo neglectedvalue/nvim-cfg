@@ -2,25 +2,12 @@
 
 local function init()
 	
-	local lsp_zero = require('lsp-zero')
-
-	lsp_zero.on_attach(function(client, bufnr)
-		-- see :help lsp-zero-keybindings
-		-- to learn the available actions
-		lsp_zero.default_keymaps({buffer = bufnr})
-	end)
-	
-	require('mason').setup({})
-	require('mason-lspconfig').setup({
- 		-- Replace the language servers listed here
-		-- with the ones you want to install
-		ensure_installed = {'omnisharp', 'lexical', 'csharp_ls'},
-		automatic_installation = true,
-		handlers = {
-			function(server_name)
-				require('lspconfig')[server_name].setup({})
-			end,
-		}
+	local lspconfig = require("lspconfig")
+	local capabilities = require("cmp_nvim_lsp").default_capabilities()
+	lspconfig.elixirls.setup({
+		-- you need to specify the executable command mannualy for elixir-ls
+	    cmd = { "/home/funkycatz/elixir_ls/language_server.sh" },
+		capabilities = capabilities,
 	})
 
 end
