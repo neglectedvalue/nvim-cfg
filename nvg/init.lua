@@ -1,6 +1,15 @@
 -- Basic remaps
 require("nvg.remap")
 
+-- LSP
+vim.lsp.config('expert', {
+  cmd = { 'expert', '--stdio' },
+  root_markers = { 'mix.exs', '.git' },
+  filetypes = { 'elixir', 'eelixir', 'heex' },
+})
+
+vim.lsp.enable 'expert'
+
 -- Lazy nvim init
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -58,19 +67,6 @@ require("lazy").setup({
 		"mbbill/undotree",
 		config = function()
 			require('nvg.plugins.undotree').init()
-		end
-	},
-	-- Lsp zero and its deps
-	{
-		'neovim/nvim-lspconfig',
-		 config = function()
-			local lspconfig = require("lspconfig")
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			lspconfig.elixirls.setup({
-				-- you need to specify the executable command mannualy for elixir-ls
-		        cmd = { "/home/funkycatz/elixir_ls/language_server.sh" },
-				capabilities = capabilities,
-			})
 		end
 	},
 	{'hrsh7th/cmp-nvim-lsp'},
