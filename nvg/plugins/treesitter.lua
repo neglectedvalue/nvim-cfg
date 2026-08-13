@@ -1,45 +1,24 @@
 local function init()
-  require'nvim-treesitter.configs'.setup {
-    ignore_install = { "norg" },
-    ensure_installed = {
-      'bash',
-      'dockerfile',
-      'go',
-      'gomod',
-      'graphql',
-      'html',
-	  'css',
-      'javascript',
-      'jsdoc',
-      'json',
-      'lua',
-      'python',
-      'tsx',
-      'typescript',
-      'yaml',
-	  'elixir',
-	  'erlang',
-	  'eex',
-    },
-    highlight = {
-      enable = true
-    },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "gnn",
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm",
-      },
-    },
-    indent = {
-      enable = true
-    }
-  }
+
+	local treesitter = require("nvim-treesitter")
+    treesitter.setup()
+    treesitter.install { 'java', 'c', 'lua', 'vim', 'vimdoc', 'query', 'elixir', 'erlang', 'heex', 'javascript', 'typescript', 'html', 'yaml' }
+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = { 'java', 'c', 'lua', 'vim', 'vimdoc', 'query', 'elixir', 'erlang', 'heex', 'javascript', 'typescript', 'html', 'yaml' },
+      callback = function()
+        -- syntax highlighting, provided by Neovim
+        vim.treesitter.start()
+        -- folds, provided by Neovim (I don't like folds)
+        -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        -- vim.wo.foldmethod = 'expr'
+        -- indentation, provided by nvim-treesitter
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
 
 end
 
 return {
   init = init
-}
+ }
